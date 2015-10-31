@@ -22,6 +22,12 @@ public class AnswerDAO {
         return answer;
     }
 
+    public List<Answer> readAllAnswersByFkQuestionId(int fkQuestionId) {
+        Query query = entityManager.createQuery("select a from Answer a where a.fkQuestionId=:qid");
+        query.setParameter("qid", fkQuestionId);
+        return (List<Answer>) query.getResultList();
+    }
+
     // test
     public static void main(String[] args) {
         AnswerDAO answerDAO = new AnswerDAO();
@@ -35,5 +41,11 @@ public class AnswerDAO {
 
         System.out.println("\n----------- One answer --------------");
         System.out.println(oneAnswer.getAnswerText());
+
+        System.out.println("\n----------- All answers by fkQuestionId --------------");
+        List<Answer> allAnswersForQuestion = answerDAO.readAllAnswersByFkQuestionId(6);
+        for(Answer answer : allAnswersForQuestion) {
+            System.out.println(answer.getAnswerText());
+        }
     }
 }
