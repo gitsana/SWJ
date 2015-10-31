@@ -1,4 +1,4 @@
-package com.swj.com.service;
+package com.swj.service;
 
 public class QuestionService {
 
