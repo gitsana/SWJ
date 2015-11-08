@@ -18,6 +18,9 @@ public class Answer {
     @Column(name = "answer")
     private String answerText;
     private int likes;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn(name = "fk_question_id")
+    private Question question;
 
     public Answer() {
     }

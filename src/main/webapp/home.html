@@ -6,9 +6,13 @@
     <link rel="stylesheet" href="resources/bootstrap/bootstrap.css">
     <script src="resources/jquery/jquery-2.1.4.js"></script>
     <script src="resources/bootstrap/bootstrap.js"></script>
+    <link rel="import" href="navbar.html">
+    <script>
+        $("#includedContent").load("navbar.html");
+    </script>
 </head>
 <body>
-
+<div id="includedContent"></div>
 
 <div class="container">
     <h2>Sawal Jawab</h2>
@@ -23,7 +27,7 @@
     <div class="tab-content">
         <div id="home" class="tab-pane fade in active">
             <h3>Top Questions on SWJ</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <div id="topTenDiv"></div>
         </div>
         <div id="menu1" class="tab-pane fade">
             <h3>Health</h3>
@@ -44,5 +48,6 @@
     </div>
 </div>
 
+<script src="js/QuestionController.js"></script>
 </body>
 </html>

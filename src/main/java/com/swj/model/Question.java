@@ -2,6 +2,7 @@ package com.swj.model;
 
 import javax.persistence.*;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 @Entity
 @Table(schema = "info", name = "question")
@@ -19,6 +20,8 @@ public class Question {
     @Column(name = "url_slug")
     private String urlSlug;
     private int likes;
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    private List<Answer> answers;
 
     public Question(int id, int fkMemberId, GregorianCalendar created, String questionText, int views, String urlSlug, int likes) {
         this.id = id;
