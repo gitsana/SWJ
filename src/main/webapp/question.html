@@ -1,0 +1,27 @@
+
+<div class="container">
+    <h3>{{ question.questionText }}</h3>
+
+    <form>
+        <textarea class="form-control" rows="3" placeholder="Type your answer here" ng-model="answerTextarea"></textarea>
+        <input type="submit" class="btn btn-info btn-sm" value="Answer" ng-click="enterAnswer()">
+    </form>
+
+    <div>{{ answerTextarea }}</div>
+
+    {{ answersSize }} answers:<hr>
+    <ul class="list-unstyled" ng-repeat="answer in answers">
+        <li>
+            <div>
+                <b>Answered by: {{ answer.fkMemberId }} on {{ answer.created | date:"MM/dd/yyyy 'at' h:mma" }} | Likes: {{ answer.likes }}</b> <br>
+
+                {{ answer.answerText }}<br>
+            </div><hr>
+        </li>
+    </ul>
+
+    <div>
+        {{ error }}
+    </div>
+</div>
+

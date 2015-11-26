@@ -28,24 +28,41 @@ public class AnswerDAO {
         return (List<Answer>) query.getResultList();
     }
 
+    public Answer createAnswer(Answer newAnswer) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(newAnswer);
+        entityManager.getTransaction().commit();
+        return null;
+    }
+
     // test
     public static void main(String[] args) {
         AnswerDAO answerDAO = new AnswerDAO();
-        List<Answer> allAnswers = answerDAO.readAllAnswers();
-        Answer oneAnswer = answerDAO.readAnswerById(3);
+        Answer newAnswer = new Answer();
+        newAnswer.setAnswerText("This is the new answer's text");
+        newAnswer.setFkMemberId(2);
+        newAnswer.setFkQuestionId(2);
+        newAnswer.setLikes(12);
+        System.out.println(newAnswer.getAnswerText() + "\nQuestion ID: " + newAnswer.getFkQuestionId()
+            + "\nLikes: " + newAnswer.getLikes());
 
-        System.out.println("----------- All answers --------------");
-        for(Answer answer : allAnswers) {
-            System.out.println(answer.getAnswerText());
-        }
-
-        System.out.println("\n----------- One answer --------------");
-        System.out.println(oneAnswer.getAnswerText());
-
-        System.out.println("\n----------- All answers by fkQuestionId --------------");
-        List<Answer> allAnswersForQuestion = answerDAO.readAllAnswersByFkQuestionId(6);
-        for(Answer answer : allAnswersForQuestion) {
-            System.out.println(answer.getAnswerText());
-        }
+        answerDAO.createAnswer(newAnswer);
+        System.out.println("Created new answer.");
+//        List<Answer> allAnswers = answerDAO.readAllAnswers();
+//        Answer oneAnswer = answerDAO.readAnswerById(3);
+//
+//        System.out.println("----------- All answers --------------");
+//        for(Answer answer : allAnswers) {
+//            System.out.println(answer.getAnswerText());
+//        }
+//
+//        System.out.println("\n----------- One answer --------------");
+//        System.out.println(oneAnswer.getAnswerText());
+//
+//        System.out.println("\n----------- All answers by fkQuestionId --------------");
+//        List<Answer> allAnswersForQuestion = answerDAO.readAllAnswersByFkQuestionId(6);
+//        for(Answer answer : allAnswersForQuestion) {
+//            System.out.println(answer.getAnswerText());
+//        }
     }
 }
