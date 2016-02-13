@@ -6,6 +6,7 @@
 
         <class>com.swj.model.Question</class>
         <class>com.swj.model.Answer</class>
+        <class>com.swj.model.User</class>
 
         <properties>
             <property name="eclipselink.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>

@@ -3,10 +3,10 @@
         <div class="col-sm-8">
             <form>
                 <h3>Ask a Question</h3>
-                {{ test }}
                 <textarea class="form-control" rows="5" required placeholder="Start typing your question here" ng-model="askTextarea"></textarea>
                 <input type="submit" class="btn btn-info btn-sm" value="Ask My Question" ng-click="askQuestion()">
             </form>
+            {{ error }}
         </div>
 
         <div class="col-sm-4">Recently Asked Questions</div>

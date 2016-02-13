@@ -1,17 +1,26 @@
 <div class="container">
-    <h3>{{ title }}</h3>
+    <div class="row">
+        <div class="col-sm-8">
+            <h3>{{ title }}</h3><hr>
 
-    <ul class="list-unstyled" ng-repeat="question in questions">
-        <li>
+            <ul class="list-unstyled" ng-repeat="question in questions">
+                <li>
+                    <div>
+                        <h4>
+                        <a href="#/question/{{ question.id }}">{{ question.questionText }}</a> <br>
+                        <small>{{ question.user.username }} on {{ question.created | date:"MM/dd/yyyy 'at' h:mma" }}
+                            Views: {{ question.views }} Likes: {{ question.likes }}</small>
+                        </h4>
+                    </div><hr>
+                </li>
+            </ul>
+
             <div>
-                <a href="#/question/{{ question.id }}">{{ question.questionText }}</a> <br>
-                <b>Asked by: {{ question.fkMemberId }} on {{ question.created | date:"MM/dd/yyyy 'at' h:mma" }}
-                Views: {{ question.views }} Likes: {{ question.likes }}</b>
-            </div><hr>
-        </li>
-    </ul>
-
-    <div>
-        {{ error }}
+                {{ error }}
+            </div>
+        </div>
+        <div class="col-sm-4">Trending Now</div>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
     </div>
+
 </div>

@@ -23,6 +23,13 @@ public class QuestionDAO {
         return question;
     }
 
+    public Question createQuestion(Question newQuestion) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(newQuestion);
+        entityManager.getTransaction().commit();
+        return null;
+    }
+
     // test
     public static void main(String[] args) {
 
@@ -39,6 +46,7 @@ public class QuestionDAO {
         System.out.println("\n--------- Read a question by ID -----------");
         Question question = questionDAO.readQuestionById(5);
         System.out.println(question.getQuestionText());
+        System.out.println("Asked by: " + question.getUser().getUsername());
 
     }
 

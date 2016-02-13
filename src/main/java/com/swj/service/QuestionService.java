@@ -3,11 +3,10 @@ package com.swj.service;
 import com.swj.dao.QuestionDAO;
 import com.swj.model.Question;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.print.attribute.standard.Media;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/question")
@@ -29,5 +28,14 @@ public class QuestionService {
         QuestionDAO questionDAO = new QuestionDAO();
         Question question = questionDAO.readQuestionById(questionId);
         return question;
+    }
+
+    @POST
+    @Path("/createQuestion")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createNewQuestion(Question newQuestion) {
+        QuestionDAO questionDAO = new QuestionDAO();
+        questionDAO.createQuestion(newQuestion);
+        return Response.status(Response.Status.OK).entity(newQuestion).build();
     }
 }

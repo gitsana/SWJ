@@ -20,17 +20,18 @@ public class Question {
     @Column(name = "url_slug")
     private String urlSlug;
     private int likes;
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
-    private List<Answer> answers;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @PrimaryKeyJoinColumn(name = "fk_member_id")
+    private User user;
 
-    public Question(int id, int fkMemberId, GregorianCalendar created, String questionText, int views, String urlSlug, int likes) {
-        this.id = id;
+    public Question(int fkMemberId, GregorianCalendar created, String questionText, int views, String urlSlug, int likes, User user) {
         this.fkMemberId = fkMemberId;
         this.created = created;
         this.questionText = questionText;
         this.views = views;
         this.urlSlug = urlSlug;
         this.likes = likes;
+        this.user = user;
     }
 
     public Question() {
@@ -90,5 +91,13 @@ public class Question {
 
     public void setLikes(int likes) {
         this.likes = likes;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

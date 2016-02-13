@@ -16,6 +16,9 @@
                 templateUrl: "/ask.html",
                 controller: "AskController"
             })
+            .when("/login", {
+                controller: "LoginController"
+            })
             .otherwise({redirectTo: "/home"});
     });
 }());

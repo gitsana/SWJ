@@ -18,20 +18,20 @@ public class Answer {
     @Column(name = "answer")
     private String answerText;
     private int likes;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @PrimaryKeyJoinColumn(name = "fk_question_id")
-    private Question question;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @PrimaryKeyJoinColumn(name = "fk_member_id")
+    private User user;
 
-    public Answer() {
-    }
-
-    public Answer(int id, int fkQuestionId, int fkMemberId, GregorianCalendar created, String answerText, int likes) {
-        this.id = id;
+    public Answer(int fkQuestionId, int fkMemberId, GregorianCalendar created, String answerText, int likes, User user) {
         this.fkQuestionId = fkQuestionId;
         this.fkMemberId = fkMemberId;
         this.created = created;
         this.answerText = answerText;
         this.likes = likes;
+        this.user = user;
+    }
+
+    public Answer() {
     }
 
     public int getId() {
@@ -80,5 +80,13 @@ public class Answer {
 
     public void setLikes(int likes) {
         this.likes = likes;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
